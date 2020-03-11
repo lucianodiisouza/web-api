@@ -18,7 +18,7 @@ exports.buscarTodos = (req, res, next) => {
     let limite = parseInt(req.query.limite || 0);
     let pagina = parseInt(req.query.pagina || 0);
 
-    if (!Number.isInteger(limiete) || !Number.isInteger(pagina)) {
+    if (!Number.isInteger(limite) || !Number.isInteger(pagina)) {
         res.status(400).send();
     }
 
