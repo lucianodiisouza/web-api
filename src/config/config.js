@@ -1,8 +1,8 @@
 module.exports = {
-    developmnent: {
+    development: {
         database: {
             host: 'localhost',
-            port: 8889,
+            port: 3306,
             name: 'spoiler',
             dialect: 'mysql',
             user: 'root',
