@@ -26,3 +26,6 @@ POST /api/spoilers
 PUT /api/spoilers/1
 
 DELETE /api/spoilers/1
+
+# Observations
+if you pass true value at "sequelize sync({ force: true})" everytime that you starts (just type 'node .')  all tables in database will be dropped and new instances of the same tables will be created withou the previous data. Use this parameter just at the first run, and set de force for false.
