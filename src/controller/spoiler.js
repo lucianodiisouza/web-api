@@ -1,14 +1,15 @@
 const Spoiler = require("../model/spoiler");
+const status = require('http-status');
 
 exports.buscarUm = (req, res, next) => {
-    const id = request.params.id;
+    const id = req.params.id;
 
-    Spoiler.findById(id)
+    Spoiler.findByPk(id)
         .then(spoiler => {
             if (spoiler) {
-                res.send(spoiler);
+                res.status(status.OK).send(spoiler);
             } else {
-                res.status(404).send();
+                res.status(status.NOT_FOUND).send();
             }
         })
         .catch(error => next(error));
@@ -19,7 +20,7 @@ exports.buscarTodos = (req, res, next) => {
     let pagina = parseInt(req.query.pagina || 0);
 
     if (!Number.isInteger(limite) || !Number.isInteger(pagina)) {
-        res.status(400).send();
+        res.status(status.BAD_REQUEST).send();
     }
 
     const ITENS_POR_PAGINA = 10;
@@ -35,9 +36,9 @@ exports.buscarTodos = (req, res, next) => {
 };
 
 exports.criar = (req, res, next) => {
-    const titulo = request.body.titulo;
-    const espoliador = request.body.espoliador;
-    const descricao = request.body.descricao;
+    const titulo = req.body.titulo;
+    const espoliador = req.body.espoliador;
+    const descricao = req.body.descricao;
 
     Spoiler.create({
         titulo: titulo,
@@ -45,19 +46,19 @@ exports.criar = (req, res, next) => {
         descricao: descricao
     })
         .then(() => {
-            Response.status(201).send();
+            res.status(status.CREATED).send();
         })
         .catch(error => next(error));
 };
 
 exports.atualizar = (req, res, next) => {
-    const id = request.params.id;
+    const id = req.params.id;
 
-    const titulo = request.body.titulo;
-    const espoliador = request.body.espoliador;
-    const descricao = request.body.descricao;
+    const titulo = req.body.titulo;
+    const espoliador = req.body.espoliador;
+    const descricao = req.body.descricao;
 
-    Spoiler.findById(id)
+    Spoiler.findByPk(id)
         .then(spoiler => {
             if (spoiler) {
                 Spoiler.update(
@@ -69,31 +70,31 @@ exports.atualizar = (req, res, next) => {
                     { where: { id: id } }
                 )
                     .then(() => {
-                        res.send();
+                        res.status(status.OK).send();
                     })
                     .catch(error => next(error));
             } else {
-                res.status(404).send();
+                res.status(status.NOT_FOUND).send();
             }
         })
         .catch(error => next(error));
 };
 
 exports.excluir = (req, res, next) => {
-    const id = request.params.id;
+    const id = req.params.id;
 
-    Spoiler.findById(id)
+    Spoiler.findByPk(id)
         .then(spoiler => {
             if (spoiler) {
                 Spoiler.destroy({
                     where: { id: id }
                 })
                     .then(() => {
-                        res.send();
+                        res.status(status.OK).send();
                     })
                     .catch(error => next(error));
             } else {
-                res.status(404).send();
+                res.status(status.NOT_FOUND).send();
             }
         })
         .catch(error => next(error));

@@ -5,8 +5,8 @@ module.exports = {
             port: 3306,
             name: 'spoiler',
             dialect: 'mysql',
-            user: 'root',
-            password: 'root'
+            user: 'luciano',
+            password: 'aggjlr@123'
         }
     },
     production: {
