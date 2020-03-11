@@ -19,7 +19,7 @@ GET /api/spoilers/1
 
 GET /api/spoilers/?limite=10&pagina=1
 
-GET /api/spoilers/?limite=1&pagina='1=1' (error)
+GET /api/spoilers/?limite=1&pagina='1=1' (prevents sqlInjection (simple method...))
 
 POST /api/spoilers
 
