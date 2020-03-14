@@ -1,16 +1,14 @@
 const http = require('http');
 const express = require('express');
 const status = require('http-status');
-const usuariosRoute = require('./routes/usuarios')
-// const spoilersRoute = require('./routes/spoilers');
+const spoilersRoute = require('./routes/spoilers');
 const sequelize = require('./database/database');
 
 const app = express();
 
 app.use(express.json());
 
-// app.use('/api', spoilersRoute);
-app.use('/api', usuariosRoute);
+app.use('/api', spoilersRoute);
 
 app.use((req, res, next) => {
     res.status(status.NOT_FOUND).send();
